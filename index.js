@@ -46,6 +46,7 @@ app.post('/register_admin', (req, res) => {
     let  adminemail= "adminemail";
     let adminpassword = "adminpassword";
     let admincontact = "admincontact";
+    let gender = "admingender";
 
     db.query("INSERT INTO " + table + " SET ?", req.body, (err, result) => {
         if (err) throw err
@@ -217,6 +218,66 @@ app.post('/login_parent', (req, res) => {
 let parentsignupname = req.body.parentsignupname;
 let parentsignuppassword = req.body.parentsignuppassword;
     var fetchData =  `SELECT * FROM parent WHERE parentsignupname='${parentsignupname}' AND parentsignuppassword='${parentsignuppassword}'`;
+    db.query(fetchData, (err, result) => {
+        if (err) throw err
+        console.log(result);
+        res.send(
+            result
+        );
+    })
+
+});
+
+///login admin
+app.post('/login_admin', (req, res) => {
+    let adminname = req.body.adminname;
+    let adminpassword = req.body.adminpassword;
+    var fetchData =  `SELECT * FROM admin WHERE adminname='${adminname}' AND adminpassword='${adminpassword}'`;
+    db.query(fetchData, (err, result) => {
+        if (err) throw err
+        console.log(result);
+        res.send(
+            result
+        );
+    })
+
+});
+
+///login class teacher
+app.post('/login_classteacher', (req, res) => {
+    let teachersignupname = req.body.teachersignupname;
+    let teachersignuppass = req.body.teachersignuppass;
+    var fetchData =  `SELECT * FROM classteacher WHERE teachersignupname='${teachersignupname}' AND teachersignuppass='${teachersignuppass}'`;
+    db.query(fetchData, (err, result) => {
+        if (err) throw err
+        console.log(result);
+        res.send(
+            result
+        );
+    })
+
+});
+
+///login driver
+app.post('/login_driver', (req, res) => {
+    let driversignupname = req.body.driversignupname;
+    let driversignuppass = req.body.driversignuppass;
+    var fetchData =  `SELECT * FROM driver WHERE driversignupname='${driversignupname}' AND driversignuppass='${driversignuppass}'`;
+    db.query(fetchData, (err, result) => {
+        if (err) throw err
+        console.log(result);
+        res.send(
+            result
+        );
+    })
+
+});
+
+///login head teacher
+app.post('/login_headteacher', (req, res) => {
+    let headteachersignupname = req.body.headteachersignupname;
+    let headteachersignuppass = req.body.headteachersignuppass;
+    var fetchData =  `SELECT * FROM headteacher WHERE headteachersignupname='${headteachersignupname}' AND headteachersignuppass='${headteachersignuppass}'`;
     db.query(fetchData, (err, result) => {
         if (err) throw err
         console.log(result);
